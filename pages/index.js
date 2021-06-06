@@ -135,14 +135,6 @@ export default function Home() {
                 </button>
               </div>
             </SwiperSlide>
-            <SwiperSlide>
-              <div className="">
-                <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                  <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={25} />
-                  <div className="font-semibold text-black align-middle items-center">Honeymoon</div>
-                </button>
-              </div>
-            </SwiperSlide>
           </Swiper>
           {/* <div className="w-5"></div> */}
 
