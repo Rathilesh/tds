@@ -2,9 +2,23 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMediaQuery } from 'react-responsive'
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment, useRef } from 'react'
+import { ChevronDownIcon } from '@heroicons/react/solid'
+import SwiperCore, {
+  Pagination
+} from 'swiper/core';
+
+SwiperCore.use([Pagination]);
+
 
 // Import Swiper styles
-import 'swiper/swiper-bundle.min.css';
+// import 'swiper/swiper-bundle.min.css';
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css"
+
+import '../styles/Home.module.css';
+
 export default function Home() {
 
   const [scroll, setScroll] = useState(0)
@@ -59,33 +73,304 @@ export default function Home() {
   console.log('isBigDisplay ? = ', isBigDisplay);
   console.log('isExtraBigDisplay ? = ', isExtraBigDisplay);
 
+  // menu functions
+
+  function EditInactiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 13V16H7L16 7L13 4L4 13Z"
+          fill="#EDE9FE"
+          stroke="#A78BFA"
+          strokeWidth="2"
+        />
+      </svg>
+    )
+  }
+
+  function EditActiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 13V16H7L16 7L13 4L4 13Z"
+          fill="#8B5CF6"
+          stroke="#C4B5FD"
+          strokeWidth="2"
+        />
+      </svg>
+    )
+  }
+
+  function DuplicateInactiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 4H12V12H4V4Z"
+          fill="#EDE9FE"
+          stroke="#A78BFA"
+          strokeWidth="2"
+        />
+        <path
+          d="M8 8H16V16H8V8Z"
+          fill="#EDE9FE"
+          stroke="#A78BFA"
+          strokeWidth="2"
+        />
+      </svg>
+    )
+  }
+
+  function DuplicateActiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 4H12V12H4V4Z"
+          fill="#8B5CF6"
+          stroke="#C4B5FD"
+          strokeWidth="2"
+        />
+        <path
+          d="M8 8H16V16H8V8Z"
+          fill="#8B5CF6"
+          stroke="#C4B5FD"
+          strokeWidth="2"
+        />
+      </svg>
+    )
+  }
+
+  function ArchiveInactiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="5"
+          y="8"
+          width="10"
+          height="8"
+          fill="#EDE9FE"
+          stroke="#A78BFA"
+          strokeWidth="2"
+        />
+        <rect
+          x="4"
+          y="4"
+          width="12"
+          height="4"
+          fill="#EDE9FE"
+          stroke="#A78BFA"
+          strokeWidth="2"
+        />
+        <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
+      </svg>
+    )
+  }
+
+  function ArchiveActiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="5"
+          y="8"
+          width="10"
+          height="8"
+          fill="#8B5CF6"
+          stroke="#C4B5FD"
+          strokeWidth="2"
+        />
+        <rect
+          x="4"
+          y="4"
+          width="12"
+          height="4"
+          fill="#8B5CF6"
+          stroke="#C4B5FD"
+          strokeWidth="2"
+        />
+        <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
+      </svg>
+    )
+  }
+
+  function MoveInactiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M10 4H16V10" stroke="#A78BFA" strokeWidth="2" />
+        <path d="M16 4L8 12" stroke="#A78BFA" strokeWidth="2" />
+        <path d="M8 6H4V16H14V12" stroke="#A78BFA" strokeWidth="2" />
+      </svg>
+    )
+  }
+
+  function MoveActiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M10 4H16V10" stroke="#C4B5FD" strokeWidth="2" />
+        <path d="M16 4L8 12" stroke="#C4B5FD" strokeWidth="2" />
+        <path d="M8 6H4V16H14V12" stroke="#C4B5FD" strokeWidth="2" />
+      </svg>
+    )
+  }
+
+  function DeleteInactiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="5"
+          y="6"
+          width="10"
+          height="10"
+          fill="#EDE9FE"
+          stroke="#A78BFA"
+          strokeWidth="2"
+        />
+        <path d="M3 6H17" stroke="#A78BFA" strokeWidth="2" />
+        <path d="M8 6V4H12V6" stroke="#A78BFA" strokeWidth="2" />
+      </svg>
+    )
+  }
+
+  function DeleteActiveIcon(props) {
+    return (
+      <svg
+        {...props}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="5"
+          y="6"
+          width="10"
+          height="10"
+          fill="#8B5CF6"
+          stroke="#C4B5FD"
+          strokeWidth="2"
+        />
+        <path d="M3 6H17" stroke="#C4B5FD" strokeWidth="2" />
+        <path d="M8 6V4H12V6" stroke="#C4B5FD" strokeWidth="2" />
+      </svg>
+    )
+  }
+
+  // menu functionsss
+
+
+  // pagination for swiper
+
+
+  const pagination = {
+    "clickable": true,
+    "renderBullet": function (index, className) {
+
+      return '<span class=\"' + className + '\ bg-yellow-600"></span>';
+
+    }
+  }
+
+
+
+
+  ///
   return (
 
     <div>
       {/* Add menu in postion absolute */}
 
+      <style global jsx>{`
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          text-align: right;
+          line-height: 20px;
+          font-size: 12px;
+          color: #000;
+          opacity: 1;
+          background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .swiper-pagination-bullet-active {
+          color: #fff;
+          background: #f5ae33 !important;
+        }
 
+       .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+          bottom: 0px;
+          left: 0;
+          width: 100%;
+          margin-top:10px;
+          text-align:right;
+      }
+      `}</style>
 
       <div id='top-menu' className=" z-10 w-full flex justify-between p-2 absolute bg-transparent md:pt-5 md:pb-5">
 
         <div className="hidden md:container md:mx-auto md:flex">
           <div id='logo-on-left-larger-screen' className="hidden md:flex md:w-1/4">
-            <h1 className="text-white sm:bg-pink-900 md:bg-green-600 xl:bg-red-600 2xl:bg-blue-600 font-bold text-shadow-lg text-xl">TRAVELISTA</h1>
+            <Image src="/assets/logo/TDS-LOGO-STR.png" width={200} height={50}></Image>
+            {/* <h1 className="text-white sm:bg-pink-900 md:bg-green-600 xl:bg-red-600 2xl:bg-blue-600 font-bold text-shadow-lg text-xl">TRAVELISTA</h1> */}
           </div>
 
           <div id='menu-on-right-larger-screen' className="hidden md:flex md:justify-end md:w-full pr-10">
             <div id="menu-container" className="flex">
               <div className="flex flex-col">
-                <a href="#" className="text-white text-base  md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal">Home</a>
+                <a href="#" className="text-white text-base  md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal">Home</a>
                 <div className="w-full border border-gray-100 mt-2"></div>
               </div>
 
-              <a href="#" className="text-white text-base md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal pl-5">About</a>
-              <a href="#" className="text-white text-base md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal pl-5">Destinations</a>
-              <a href="#" className="text-white text-base md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal pl-5">Responsible Tourism</a>
-              <a href="#" className="text-white text-base md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal pl-5">Blog</a>
-              <a href="#" className="text-white text-base md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal pl-5">Contact us</a>
-              <a href="#" className="text-white text-base md:text-xs 2xl:text-xl lg:text-base text-shadow-sm font-normal pl-5">Privacy Policy</a>
+
+
+              <a href="#" className="text-white text-base md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal pl-5">About</a>
+              <a href="#" className="text-white text-base md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal pl-5">Destinations</a>
+
+              <a href="#" className="text-white text-base md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal pl-5">Responsible Tourism</a>
+              <a href="#" className="text-white text-base md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal pl-5">Blog</a>
+              <a href="#" className="text-white text-base md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal pl-5">Contact us</a>
+              <a href="#" className="text-white text-base md:text-xs 2xl:text-lg lg:text-base text-shadow-sm font-normal pl-5">Privacy Policy</a>
             </div>
           </div>
           <div id='top-menu-right-menu'>
@@ -102,15 +387,16 @@ export default function Home() {
 
 
 
-        <div id='top-menu-left-icon' className="md:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 fill-current text-white" viewBox="0 0 24 24" stroke="currentColor">
+        <div id='top-menu-left-icon' className="md:hidden align-middle items-center flex">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 fill-current text-white items-center align-middle" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </div>
-        <div id='top-menu-center-logo' className="md:hidden">
-          <h1 className="text-white sm:bg-pink-900 md:bg-green-600 xl:bg-red-600 2xl:bg-blue-600 font-bold text-shadow-lg text-xl">TRAVELISTA</h1>
+        <div id='top-menu-center-logo' className="md:hidden  align-middle items-center flex">
+          <Image src="/assets/logo/TDS-LOGO-STR.png" width={250} height={50}></Image>
+          {/* <h1 className="text-white sm:bg-pink-900 md:bg-green-600 xl:bg-red-600 2xl:bg-blue-600 font-bold text-shadow-lg text-xl">TRAVELISTA</h1> */}
         </div>
-        <div id='top-menu-right-menu' className="md:hidden">
+        <div id='top-menu-right-menu' className="md:hidden align-middle items-center flex">
           <div id='auth-menu' className="bg-white shadow-2xl drop-shadow-2xl rounded-lg w-full text-gray-800 flex p-1">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -273,130 +559,6 @@ export default function Home() {
         </div>
 
 
-
-
-
-        {/* Add center text and of this image */}
-        {/* <div className="z-20 absolute  top-1/3 left-5 2xl:left-1/4 md:left-20 -translate-x-1/2 -translate-y-1/2">
-          <h1 id="main-heading" className='text-shadow-xl font-bold text-white text-4xl md:text-4xl sm:text-5xl md:mb-3'>Welcome to Travelista</h1>
-          <h1 className="text-shadow-sm font-semibold text-white text-1xl  md:mb-3">lorem ipsume dolar emit </h1>
-          <button className="bg-yellow-600 text-center font-normal text-white px-4 py-1 rounded-full shadow-2xl mt-2 font-thin text-sm flex">Call to Book
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-            </svg>
-          </button>
-        </div> */}
-        {/* Add scrollable interest buttons */}
-        {/* <div id="scrollable-bottom-div-title" className="flex z-20 absolute bottom-20 md:bottom-60 w-screen pl-5 md:hidden">
-          <div className="w-10/12">
-            <h6 className="text-shadow-lg  text-white text-xl">Choose your interest</h6>
-          </div>
-          <div className="w-1/12 flex align-middle justify-around items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 fill-current text-white" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 fill-current text-white" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-            </svg>
-          </div>
-        </div> */}
-
-        {/* <div class="absolute w-screen top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:container">
-
-          <div className="hidden w-1/4 align-middle text-center md:flex md:justify-center">
-
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white text-center" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-
-          </div>
-          <div className="md:w-1/2">
-            <Swiper
-              spaceBetween={10}
-              slidesPerView={isTablet ? 4 : isSmallDisplay ? 4 : 3}
-            // onSlideChange={() => console.log('slide change')}
-            // onSwiper={(swiper) => console.log(swiper)}
-            >
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-yellow-600 text-center text-white px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex  justify-around items-center">
-                    <Image src="/assets/icons/mountain.svg" alt="Hill" width={40}  height={isExtraBigDisplay ? 40 : 25} />
-                    <div className="font-semibold text-white align-middle items-center">Hill</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                    <Image src="/assets/icons/ocean-waves.svg" alt="Hill" width={40} height={25} />
-                    <div className="font-semibold text-black align-middle items-center">Beach</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                    <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={25} />
-                    <div className="font-semibold text-black align-middle items-center">Forest</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                    <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={25} />
-                    <div className="font-semibold text-black align-middle items-center">Forest</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                    <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={25} />
-                    <div className="font-semibold text-black align-middle items-center">Forest</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-
-
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                    <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={25} />
-                    <div className="font-semibold text-black align-middle items-center">Forest</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-
-
-              <SwiperSlide>
-                <div className="">
-                  <button className="w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                    <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={25} />
-                    <div className="font-semibold text-black align-middle items-center">Forest</div>
-                  </button>
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          </div>
-
-          <div className="hidden w-1/4 align-middle text-center md:flex md:justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white text-center" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-
-        </div> */}
-
-        {/* <div id="scrollable-bottom-div" className="z-20 absolute bottom-4 md:bottom-40 w-screen md:container md:mx-auto md:align-middle md:items-center md:justify-center p-3  justify-items">
-
-
-          
-
-
-        </div> */}
 
       </div >
 
@@ -695,10 +857,10 @@ export default function Home() {
         <div id="blogCard" className="bg-gray-600 md:pt-28">
           {/* card heading and navigation */}
 
-          <div className="md:flex md:container md:mx-auto md:w-full">
+          {/* <div className="md:flex md:container md:mx-auto md:w-full">
             <div id="blogHeading" className="flex justify-between p-3 md:w-full">
               <div id="blogHeading">
-                <h4 className="text-lg font-semibold text-shadow text-white  2xl:text-5xl 2xl:text-shadow-xl">From our Blog</h4>
+                <h4 className="text-lg font-semibold text-shadow text-white  2xl:text-4xl 2xl:text-shadow-xl">From our Blog</h4>
               </div>
               <div id="blogControlls">
                 <div className="flex align-middle justify-around items-center">
@@ -714,83 +876,69 @@ export default function Home() {
 
               </div>
             </div>
-          </div>
+          </div> */}
           {/* property image */}
 
-
-          <div id="blogImage" className="pb-5 w-full flex justify-items p-3">
-
-
-
-            <div className="md:container md:mx-auto flex w-full">
+          <section className="text-gray-400 bg-gray-600 body-font">
+            <div className="container px-5 py-5 mx-auto">
+              <div className="flex flex-col mt-5 md:mt-0">
+                <div className="h-1 bg-gray-800 rounded overflow-hidden">
+                  <div className="w-24 h-full bg-yellow-500" />
+                </div>
+                <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+                  <h1 className="sm:w-2/5 text-white font-medium title-font text-2xl mb-2 sm:mb-0 2xl:text-4xl 2xl:text-shadow-xl">From our Blog</h1>
+                  <p className="sm:w-3/5 leading-relaxed text-gray-200 sm:pl-10 pl-0">Street art subway tile salvia four dollar toast bitters selfies quinoa yuccie synth meditation iPhone intelligentsia prism tofu. Viral gochujang bitters dreamcatcher.</p>
+                </div>
+              </div>
 
               <Swiper
-                spaceBetween={isSmallDisplay ? 10 : 5}
-                slidesPerView={isSmallDisplay ? 3 : isTablet ? 2 : 2}
-              //onSlideChange={() => console.log('slide change')}
-              //onSwiper={(swiper) => console.log(swiper)}
-              >
-                <SwiperSlide>
+                pagination={pagination}
+                spaceBetween={isSmallDisplay ? 30 : 10}
+                slidesPerView={isSmallDisplay ? 3 : 2}>
+                <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
 
-                  <div className="w-full">
-                    <img src="https://images.unsplash.com/photo-1485809052957-5113b0ff51af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=933&q=80" className=" w-full h-40 md:h-60 2xl:h-80 object-cover rounded-xl"></img>
-                    <span className="text-xs font-semibold text-shadow text-white">Lorem ipsum dummy text ...</span>
-                    <div className="flex justify-between align-middle items-center">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-white" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-
-                      <span className="text-xs font-semibold text-shadow text-white">July 14th 2021</span>
-                      <button className="bg-white text-center border border-gray-300  text-black rounded-full shadow-2xl px-1 font-normal text-sm">
-                        Read
-                      </button>
-
+                  <SwiperSlide>
+                    <div className="2xl:w-full lg:w-full md:w-full xl:w-full sm:mb-0 mb-6 hover:border-gray-500 hover:border">
+                      <img alt="content" className="object-cover object-center h-full" src="https://images.unsplash.com/photo-1485809052957-5113b0ff51af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=933&q=80" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
+                      <h2 className="text-xl font-medium title-font text-white mt-5">Shooting Stars</h2>
+                      <p className="text-gray-200 leading-relaxed mt-2">Swag shoindxgoitch literally meditation subway tile tumblr cold-pressed..</p>
+                      <a className="text-yellow-400 inline-flex items-center mt-3">Read More
+                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </a>
                     </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="w-full">
-                    <img src="https://images.unsplash.com/photo-1568454537842-d933259bb258?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="w-full h-40 md:h-60 2xl:h-80 object-cover rounded-xl"></img>
-                    <span className="text-xs font-semibold text-shadow text-white">Lorem ipsum dummy text ...</span>
-                    <div className="flex justify-between align-middle items-center">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-white" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-
-                      <span className="text-xs font-semibold text-shadow text-white">July 14th 2021</span>
-                      <button className="bg-white text-center border border-gray-300  text-black rounded-full shadow-2xl px-1 font-normal text-sm">
-                        Read
-                      </button>
-
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="2xl:w-full lg:w-full md:w-full xl:w-full sm:mb-0 mb-6">
+                      <img alt="content" className="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1568454537842-d933259bb258?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
+                      <h2 className="text-xl font-medium title-font text-white mt-5">The Catalyzer</h2>
+                      <p className="text-gray-200 leading-relaxed mt-2">Swag shoindxigoitch literally meditation subway tile tumblr cold-pressed..</p>
+                      <a className="text-yellow-400 inline-flex items-center mt-3">Read More
+                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </a>
                     </div>
-                  </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                  <div className="w-full">
-                    <img src="https://images.unsplash.com/photo-1597910037383-d79beb2b39c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="w-full h-40 md:h-60 2xl:h-80 object-cover rounded-xl"></img>
-                    <span className="text-xs font-semibold text-shadow text-white">Lorem ipsum dummy text ...</span>
-                    <div className="flex justify-between align-middle items-center">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-white" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-
-                      <span className="text-xs font-semibold text-shadow text-white">July 14th 2021</span>
-                      <button className="bg-white text-center border border-gray-300  text-black rounded-full shadow-2xl px-1 font-normal text-sm">
-                        Read
-                      </button>
-
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="2xl:w-full lg:w-full md:w-full xl:w-full sm:mb-0 mb-6">
+                      <img alt="content" className="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1597910037383-d79beb2b39c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
+                      <h2 className="text-xl font-medium title-font text-white mt-5">The 400 Blows</h2>
+                      <p className="text-gray-200 leading-relaxed mt-2">Swag shoindegoitch literally meditation subway tile tumblr cold-pressed..</p>
+                      <a className="text-yellow-400 inline-flex items-center mt-3">Read More
+                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </a>
                     </div>
-                  </div>
-                </SwiperSlide>
+                  </SwiperSlide>
+                </div>
               </Swiper>
-
             </div>
+          </section>
 
-          </div>
+
 
 
         </div>
@@ -800,161 +948,199 @@ export default function Home() {
 
         {/* Responcible Tourism */}
 
-        <div id="responsibleCard" className="bg-white">
-          {/* card heading and navigation */}
-          <div className="md:flex md:container md:mx-auto md:w-full">
-            <div id="responsibleHeading" className="flex justify-between p-3 md:w-full">
-              <div id="responsibleHeading" className="pt-5 pb-5">
-                <h4 className="text-lg font-semibold text-shadow text-gray-600  2xl:text-5xl 2xl:text-shadow-md">Responsible Tourism</h4>
-              </div>
-              <div id="responsibleControlls">
-                <div className="flex align-middle justify-around items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 fill-current text-black" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 fill-current text-black" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
 
-                </div>
 
-              </div>
+
+        <section className="text-gray-700 body-font bg-white">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="flex flex-col text-center w-full mb-10">
+
+              <h2 className="text-xs text-yellow-800 tracking-widest font-medium title-font mb-1">TDS PRESETS</h2>
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-700  2xl:text-4xl 2xl:text-shadow-md">Responsible Tourism</h1>
+              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
             </div>
-          </div>
-          {/* property image */}
-
-          <div className="md:flex md:container md:mx-auto md:w-full ">
 
             <Swiper
-              spaceBetween={10}
-              slidesPerView={isSmallDisplay ? 3 : isTablet ? 2 : 1}
-            // onSlideChange={() => console.log('slide change')}
-            // onSwiper={(swiper) => console.log(swiper)}
-            >
-              <SwiperSlide>
-                <div id="responsibleImage" className="pl-3 pr-3 pb-5  grid grid-cols-1 gap-2 justify-items">
-                  <div className=" leading-3">
-                    <img src="https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className=" w-full h-40 md:h-60 2xl:h-80 object-cover rounded-xl mb-3"></img>
+              pagination={pagination}
+              spaceBetween={isTablet ? 20 : 10}
+              slidesPerView={isSmallDisplay ? 2 : 1}>
 
-                    <div className="flex  justify-start align-middle items-center mb-2">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-600" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <div className="flex flex-wrap">
+                <SwiperSlide>
+                  <div className="2xl:w-full lg:w-full md:w-full xl:w-full px-2 py-1">
+                    <img src="https://images.unsplash.com/photo-1500621242946-fc62f4875073?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
+                    <h2 className="text-lg sm:text-xl text-gray-600 font-medium title-font mb-2">The Catalyzer</h2>
+                    <p className="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+                    <a className="text-yellow-600 inline-flex items-center">Learn More
+                      <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
-
-                      <span className="text-xs font-semibold text-shadow text-gray-600 pl-3 ">July 14th 2021</span>
-
-
-                    </div>
-
-                    <span className="text-xs font-semibold text-gray-600	">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</span>
-
+                    </a>
                   </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="xl:w-full 2xl:w-full lg:w-full  md:w-full px-2 py-1">
+                    <img src="https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
 
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div id="responsibleImage" className="pl-3 pr-3 pb-5  grid grid-cols-1 gap-2 justify-items">
-                  <div className=" leading-3">
-                    <img src="https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className=" w-full h-40 md:h-60 2xl:h-80 object-cover rounded-xl mb-3"></img>
-
-                    <div className="flex  justify-start align-middle items-center mb-2">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-600" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <h2 className="text-lg sm:text-xl text-gray-600 font-medium title-font mb-2">Neptune</h2>
+                    <p className="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+                    <a className="text-yellow-600 inline-flex items-center">Learn More
+                      <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
-
-                      <span className="text-xs font-semibold text-shadow text-gray-600 pl-3 ">July 14th 2021</span>
-
-
-                    </div>
-
-                    <span className="text-xs font-semibold text-gray-600	">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</span>
-
+                    </a>
                   </div>
+                </SwiperSlide>
 
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
+                <SwiperSlide>
+                  <div className="xl:w-full 2xl:w-full lg:w-full  md:w-full px-2 py-1">
+                    <img src="https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
 
-                <div id="responsibleImage" className="pl-3 pr-3 pb-5  grid grid-cols-1 gap-2 justify-items">
-                  <div className=" leading-3">
-                    <img src="https://images.unsplash.com/photo-1500621242946-fc62f4875073?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" className=" w-full h-40 md:h-60 2xl:h-80 object-cover rounded-xl mb-3"></img>
-
-                    <div className="flex  justify-start align-middle items-center mb-2">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-600" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <h2 className="text-lg sm:text-xl text-gray-600 font-medium title-font mb-2">Neptune</h2>
+                    <p className="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+                    <a className="text-yellow-600 inline-flex items-center">Learn More
+                      <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
-
-                      <span className="text-xs font-semibold text-shadow text-gray-600 pl-3 ">Jan 15th 2021</span>
-
-
-                    </div>
-
-                    <span className="text-xs font-semibold text-gray-600	">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</span>
-
+                    </a>
                   </div>
-
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
+              </div>
             </Swiper>
 
+            <button className="flex mx-auto mt-10 text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">View More</button>
           </div>
+        </section>
 
-
-
-        </div>
 
         {/* responsible card end */}
 
 
         {/* Footer Start */}
 
-        <div id="footer" className="bg-gray-100">
-          {/* card heading and navigation */}
-          <div id="responsibleHeading" className="flex justify-center pt-4">
-            <div id="responsibleHeading">
-              <h4 className="text-lg font-semibold text-shadow text-gray-600">TRAVELISTA</h4>
+
+        <footer className="text-gray-400 bg-gray-900 body-font">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="flex flex-wrap md:text-left text-center -mb-10 -mx-4">
+
+              <div className="lg:w-3/6 md:w-1/2 w-full px-4">
+                <div id="responsibleHeading" className="flex justify-center md:justify-center pb-5 ">
+                  <div id="responsibleHeading">
+                    <Image src="/assets/logo/TDS-LOGO-STR.png" width={300} height={70}></Image>
+                  </div>
+                </div>
+                <div id="footerSlogan" className="leading-3 p-2 flex justify-center pb-5">
+
+                  {/* <div className="w-1/12"></div> */}
+                  <div className="w-full"><span className="text-sm font-semibold text-gray-300 text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui o</span>
+                  </div>
+                  {/* <div className="w-1/12"></div> */}
+
+                </div>
+              </div>
+
+              <div className="hidden md:block lg:w-1/6 md:w-1/2 w-full px-4 md:text-center">
+                <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
+                <nav className="list-none mb-10">
+                  <li>
+                    <a className="text-gray-400 hover:text-white">First Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Second Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Third Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Fourth Link</a>
+                  </li>
+                </nav>
+              </div>
+              <div className="hidden md:block lg:w-1/6 md:w-1/2 w-full px-4 md:text-center">
+                <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
+                <nav className="list-none mb-10">
+                  <li>
+                    <a className="text-gray-400 hover:text-white">First Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Second Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Third Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Fourth Link</a>
+                  </li>
+                </nav>
+              </div>
+              <div className="hidden md:block lg:w-1/6 md:w-1/2 w-full px-4 md:text-center">
+                <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
+                <nav className="list-none mb-10">
+                  <li>
+                    <a className="text-gray-400 hover:text-white">First Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Second Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Third Link</a>
+                  </li>
+                  <li>
+                    <a className="text-gray-400 hover:text-white">Fourth Link</a>
+                  </li>
+                </nav>
+              </div>
             </div>
           </div>
-          <div id="footerSlogan" className="leading-3 p-2 flex">
-
-            <div className="w-1/12"></div>
-            <div className="w-10/12"><span className="text-xs font-semibold text-gray-600 text-justify">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</span>
+          <div className="border-t border-gray-800">
+            <div className="container px-5 py-8 flex flex-wrap mx-auto items-center">
+              <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
+                <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
+                  <label htmlFor="footer-field" className="leading-7 text-sm text-gray-400">Placeholder</label>
+                  <input type="text" id="footer-field" name="footer-field" className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-yellow-900 focus:bg-transparent focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                </div>
+                <button className="inline-flex text-white bg-yellow-600 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-400 rounded">Button</button>
+                <p className="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 text-center sm:text-left">Bitters chicharrones fanny pack
+                  <br className="lg:block hidden" />waistcoat green juice
+                </p>
+              </div>
+              <span className="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
+                <a className="text-gray-400">
+                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                  </svg>
+                </a>
+                <a className="ml-3 text-gray-400">
+                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                  </svg>
+                </a>
+                <a className="ml-3 text-gray-400">
+                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">
+                    <rect width={20} height={20} x={2} y={2} rx={5} ry={5} />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01" />
+                  </svg>
+                </a>
+                <a className="ml-3 text-gray-400">
+                  <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={0} className="w-5 h-5" viewBox="0 0 24 24">
+                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                    <circle cx={4} cy={4} r={2} stroke="none" />
+                  </svg>
+                </a>
+              </span>
             </div>
-            <div className="w-1/12"></div>
-
           </div>
-
-          <div id="footerIcons" className="leading-3 p-2 flex">
-
-            <div className="w-2/12"></div>
-            <div className="w-8/12 flex justify-around">
-              <Image src="/assets/icons/fb.png" alt="Hill" width={30} height={30} />
-              <Image src="/assets/icons/insta.png" alt="Hill" width={30} height={30} />
-              <Image src="/assets/icons/twitter.png" alt="Hill" width={30} height={30} />
-              <Image src="/assets/icons/link.png" alt="Hill" width={30} height={30} />
+          <div className="bg-gray-800 bg-opacity-75">
+            <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+              <p className="text-gray-400 text-sm text-center sm:text-left">© 2021 TDS      </p>
+              <span className="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-400 text-sm">Enamel pin tousled raclette tacos irony</span>
             </div>
-            <div className="w-2/12"></div>
-
           </div>
+        </footer>
 
-          <div id="bottomFooter" className="p-3 flex bg-gray-900 justify-around">
-            <a href="#" className="font-bold text-xs text-white">HOME</a>
-            <a href="#" className="font-bold text-xs text-white">ABOUT US</a>
-            <a href="#" className="font-bold text-xs text-white">OFFERS</a>
-            <a href="#" className="font-bold text-xs text-white">NEWS</a>
-            <a href="#" className="font-bold text-xs text-white">CONTACT</a>
 
-          </div>
-          <div id="bottomFooterCoyRight" className="pb-4 flex bg-gray-900 justify-around">
-            <span className="font-thin text-xs text-white">Copyright @2021 All rights reserved</span>
-          </div>
 
-        </div>
 
         {/* footer end */}
 
