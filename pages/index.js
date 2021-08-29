@@ -408,10 +408,11 @@ export default function Home() {
         </div>
       </div>
       {/* Add home screen imagewith screen height */}
-      <div id="loadingScreen1" className="relative bg-indigo-800">
+      <div id="loadingScreen1" className="relative bg-white">
 
         {/* { isSmallDisplay && <h1>Messages: {count}</h1>} */}
-        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" className="w-full h-screen object-cover"></img>
+        {/* <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" className="w-full h-screen object-cover"></img> */}
+        <img src="/assets/images/main.jpg" className="w-full h-screen object-cover"></img>
         {
           // isSmallDisplay
           //  ?
@@ -433,7 +434,7 @@ export default function Home() {
 
         <div id="main-typography-position" className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:container">
           <div id="main-typography" className="p-2">
-            <h1 id="main-heading" className='text-shadow-xl font-bold text-white text-4xl md:text-4xl sm:text-5xl md:mb-3 2xl:text-7xl '>Welcome to Travelista</h1>
+            <h1 id="main-heading" className='text-shadow-xl font-bold text-white text-4xl md:text-4xl sm:text-5xl md:mb-3 2xl:text-7xl '>Welcome to Tour de South</h1>
             <h1 className="text-shadow-sm font-semibold text-white text-1xl  md:mb-3 2xl:text-4xl">lorem ipsume dolar emit </h1>
             <button className="bg-yellow-600 text-center font-normal text-white px-4 py-1 2xl:px-6 2xl:py-3 rounded-full shadow-2xl mt-2 font-thin text-sm flex 2xl:text-2xl">Call to Book
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 2xl:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -575,6 +576,7 @@ export default function Home() {
               <Swiper
                 spaceBetween={isTablet ? 20 : 10}
                 slidesPerView={isSmallDisplay ? 3 : isTablet ? 2 : 1}
+              // pagination={pagination}
               // onSlideChange={() => console.log('slide change')}
               //onSwiper={(swiper) => console.log(swiper)}
               >
@@ -601,7 +603,7 @@ export default function Home() {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/tds13.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -670,7 +672,7 @@ export default function Home() {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/tds1.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -738,7 +740,7 @@ export default function Home() {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="https://images.unsplash.com/photo-1576604303800-f2435c2db6bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/tds11.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -808,7 +810,7 @@ export default function Home() {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="https://images.unsplash.com/photo-1576604303800-f2435c2db6bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/tds3.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -899,7 +901,7 @@ export default function Home() {
 
                   <SwiperSlide>
                     <div className="2xl:w-full lg:w-full md:w-full xl:w-full sm:mb-0 mb-6 hover:border-gray-500 hover:border">
-                      <img alt="content" className="object-cover object-center h-full" src="https://images.unsplash.com/photo-1485809052957-5113b0ff51af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=933&q=80" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
+                      <img alt="content" className="object-cover object-center h-full" src="/assets/images/tds2.jpg" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
                       <h2 className="text-xl font-medium title-font text-white mt-5">Shooting Stars</h2>
                       <p className="text-gray-200 leading-relaxed mt-2">Swag shoindxgoitch literally meditation subway tile tumblr cold-pressed..</p>
                       <a className="text-yellow-400 inline-flex items-center mt-3">Read More
@@ -911,7 +913,7 @@ export default function Home() {
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="2xl:w-full lg:w-full md:w-full xl:w-full sm:mb-0 mb-6">
-                      <img alt="content" className="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1568454537842-d933259bb258?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
+                      <img alt="content" className="object-cover object-center h-full w-full" src="/assets/images/tds10.jpg" className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
                       <h2 className="text-xl font-medium title-font text-white mt-5">The Catalyzer</h2>
                       <p className="text-gray-200 leading-relaxed mt-2">Swag shoindxigoitch literally meditation subway tile tumblr cold-pressed..</p>
                       <a className="text-yellow-400 inline-flex items-center mt-3">Read More
@@ -969,7 +971,7 @@ export default function Home() {
               <div className="flex flex-wrap">
                 <SwiperSlide>
                   <div className="2xl:w-full lg:w-full md:w-full xl:w-full px-2 py-1">
-                    <img src="https://images.unsplash.com/photo-1500621242946-fc62f4875073?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
+                    <img src="/assets/images/tds5.jpg" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
                     <h2 className="text-lg sm:text-xl text-gray-600 font-medium title-font mb-2">The Catalyzer</h2>
                     <p className="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
                     <a className="text-yellow-600 inline-flex items-center">Learn More
@@ -981,7 +983,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="xl:w-full 2xl:w-full lg:w-full  md:w-full px-2 py-1">
-                    <img src="https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
+                    <img src="/assets/images/tds4.jpg" className="rounded-lg w-full h-60 2xl:h-72  object-cover shadow-2xl mb-5 hover:border-b-2 hover:border-gray-800"></img>
 
                     <h2 className="text-lg sm:text-xl text-gray-600 font-medium title-font mb-2">Neptune</h2>
                     <p className="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
