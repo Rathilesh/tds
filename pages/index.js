@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMediaQuery } from 'react-responsive'
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
+import Seo from '../componets/seo'
+import { fetchAPI } from "../lib/api";
+
 import SwiperCore, {
   Pagination
 } from 'swiper/core';
@@ -19,7 +19,7 @@ import "swiper/components/pagination/pagination.min.css"
 
 import '../styles/Home.module.css';
 
-export default function Home() {
+const Home = ({ blogs, properties, homepage }) => {
 
   const [scroll, setScroll] = useState(0)
 
@@ -314,11 +314,12 @@ export default function Home() {
 
 
 
-
+  console.log(blogs);
   ///
   return (
 
     <div>
+      <Seo seo={homepage.SEO} />
       {/* Add menu in postion absolute */}
 
       <style global jsx>{`
@@ -1155,3 +1156,18 @@ export default function Home() {
     </div >
   )
 }
+
+export async function getStaticProps() {
+  // Run API calls in parallel
+  const [blogs, properties, homepage] = await Promise.all([
+    fetchAPI("/blog-posts"),
+    fetchAPI("/properties"),
+    fetchAPI("/home-page"),
+  ]);
+
+  return {
+    props: { blogs, properties, homepage },
+    revalidate: 1,
+  };
+}
+export default Home;
