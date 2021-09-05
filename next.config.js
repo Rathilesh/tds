@@ -1,5 +1,5 @@
 module.exports = {
     images: {
-        domains: ['localhost'],
+        domains: ['tds-admin-ia7bf.ondigitalocean.app'],
     },
 }

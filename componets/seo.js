@@ -20,7 +20,7 @@ const Seo = ({ seo }) => {
         // Add title suffix
         metaTitle: `${seoWithDefaults.MetaTitle} | ${SiteName}`,
         // Get full image URL
-        shareImage: getStrapiMedia(seoWithDefaults.ShareImage[0]) //getStrapiMedia(
+        shareImage: seoWithDefaults.ShareImage[0] //getStrapiMedia(
     };
 
     return (
