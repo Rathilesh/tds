@@ -98,8 +98,8 @@ const Home = ({ blogs, properties, homepage }) => {
           text-align:right;
       }
       `}</style>
-
       <Menu />
+
       {/* Add home screen imagewith screen height */}
       <div id="loadingScreen1" className="relative bg-white">
 

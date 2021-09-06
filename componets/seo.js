@@ -13,7 +13,7 @@ const Seo = ({ seo }) => {
     };
 
     console.log('SEO componets executed')
-    console.log(seoWithDefaults)
+    // console.log(seoWithDefaults)
 
     const fullSeo = {
         ...seoWithDefaults,
