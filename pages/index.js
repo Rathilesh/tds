@@ -14,12 +14,8 @@ import SwiperCore, {
 
 SwiperCore.use([Pagination]);
 
-
-// Import Swiper styles
-// import 'swiper/swiper-bundle.min.css';
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css"
-
 import '../styles/Home.module.css';
 
 const Home = ({ blogs, properties, homepage }) => {
@@ -71,26 +67,6 @@ const Home = ({ blogs, properties, homepage }) => {
     query: '(min-width: 1536px)'
   })
 
-  console.log('isTablet ? = ', isExtraBigDisplay);
-  console.log('isSmallDisplay ? = ', isSmallDisplay);
-  console.log('isBigDisplay ? = ', isBigDisplay);
-  console.log('isExtraBigDisplay ? = ', isExtraBigDisplay);
-
-  // menu functions
-
-  
-  // menu functionsss
-
-
-  // pagination for swiper
-
-
-  
-
-
-
-  console.log(blogs);
-  ///
   return (
 
     <div>
@@ -153,12 +129,12 @@ const Home = ({ blogs, properties, homepage }) => {
           <div id="main-typography" className="p-2">
             <h1 id="main-heading" className='text-shadow-xl font-bold text-white text-4xl md:text-4xl sm:text-5xl md:mb-3 2xl:text-7xl '>Welcome to Tour de South</h1>
             <h1 className="text-shadow-sm font-semibold text-white text-1xl  md:mb-3 2xl:text-4xl">lorem ipsume dolar emit </h1>
-             <button className="bg-yellow-600 text-center font-normal text-white px-4 py-1 2xl:px-6 2xl:py-3 rounded-full shadow-2xl mt-2 font-thin text-sm flex 2xl:text-2xl">Call to Book
+            <button className="bg-yellow-600 text-center font-normal text-white px-4 py-1 2xl:px-6 2xl:py-3 rounded-full shadow-2xl mt-2 font-thin text-sm flex 2xl:text-2xl">Call to Book
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 2xl:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
               </svg>
-            </button> 
-            
+            </button>
+
           </div>
 
         </div>
@@ -321,7 +297,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="/assets/images/tds13.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/placeholder.png" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -390,7 +366,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="/assets/images/tds1.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/placeholder.png" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -458,7 +434,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="/assets/images/tds11.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/placeholder.png" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -528,7 +504,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     </div> */}
                     {/* property image */}
                     <div id="cardImage" className="pt-3 pl-3 pr-3 pb-2">
-                      <img src="/assets/images/tds3.jpg" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
+                      <img src="/assets/images/placeholder.png" className="w-full h-40 md:h-60 object-cover rounded-xl"></img>
                     </div>
                     {/* properties description */}
 
@@ -599,7 +575,7 @@ const Home = ({ blogs, properties, homepage }) => {
           </div> */}
           {/* property image */}
 
-         <Blog blogs={blogs}/> 
+          <Blog blogs={blogs} />
 
 
 
@@ -614,7 +590,7 @@ const Home = ({ blogs, properties, homepage }) => {
 
 
 
-        <ResponsibleTourism blogs={blogs}/>
+        <ResponsibleTourism blogs={blogs} />
 
 
         {/* responsible card end */}
@@ -623,7 +599,7 @@ const Home = ({ blogs, properties, homepage }) => {
         {/* Footer Start */}
 
 
-      <Footer />
+        <Footer />
 
 
 
