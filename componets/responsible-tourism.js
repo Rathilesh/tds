@@ -19,7 +19,8 @@ const pagination = {
   }
 }
 
-const ResponsibleTourism = ({ blogs }) => {
+const ResponsibleTourism = ({ dataRT }) => {
+  console.log(dataRT)
   const isTablet = useMediaQuery({
     query: '(min-width: 640px)'
   })
@@ -48,10 +49,11 @@ const ResponsibleTourism = ({ blogs }) => {
           slidesPerView={isSmallDisplay ? 2 : 1}>
 
           <div className="flex flex-wrap">
-            {blogs.map((value, index) => {
-              let cardDetails = { "title": value.post_name, "desc": value.post_content, "image": value.files[0].file[0].formats };
+            {dataRT.map((value, index) => {
+              let cardDetails = { "title": value.post_title, "desc": value.post_description, "image": value.files[0].file[0].formats };
               return <SwiperSlide key={value.id}><CardBody key={value.id} cardDetails={cardDetails} /></SwiperSlide>
             })}
+            
           </div>
         </Swiper>
 

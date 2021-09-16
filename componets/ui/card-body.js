@@ -1,6 +1,8 @@
 
 import { useMediaQuery } from 'react-responsive'
 import Image from 'next/image'
+import { getStrapiMediaSingle } from '../../lib/media'
+
 
 
 const CardBody = ({ cardDetails }) => {
@@ -24,7 +26,7 @@ const CardBody = ({ cardDetails }) => {
 
     <div className="2xl:w-full lg:w-full md:w-full xl:w-full sm:mb-0 mb-6 hover:border-gray-500 hover:border">
       <Image alt="content" className="object-cover object-center h-full"
-        src={'https://tds-admin-ia7bf.ondigitalocean.app' + imageSize} layout="fill"
+        src={ getStrapiMediaSingle(imageSize) } layout="fill"
         className=" w-full h-40 md:h-60 2xl:h-60 object-cover rounded-xl" />
       <h2 className="text-xl font-medium title-font text-white mt-5">{cardDetails.title}</h2>
       <p className="text-gray-200 leading-relaxed mt-2">{cardDetails.desc}</p>
