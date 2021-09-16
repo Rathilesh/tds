@@ -1,33 +1,61 @@
 import 'tailwindcss/tailwind.css'
 import App from "next/app";
 import Head from "next/head";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
-
-// function MyApp({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// export default MyApp   -- this is old
-
-
-// Store Strapi Global object in context
+import { useRouter } from 'next/router'
+import Loader from '../componets/ui/loader';
 export const GlobalContext = createContext({});
 
 const MyApp = ({ Component, pageProps }) => {
   const { global } = pageProps;
+  const router = useRouter()
+  const [pageLoading, setPageLoading] = useState(false)
+
+  useEffect(() => {
+    const handleRouteChangeStart = (url, { shallow }) => {
+      setPageLoading(true);
+      console.log(
+        `App is changing to ${url} ${shallow ? 'with' : 'without'
+        } shallow routing`
+      )
+    }
+
+    const handleRouteChangeComplete = (url, { shallow }) => {
+      setPageLoading(false);
+      console.log(
+        `its comleted`
+      )
+    }
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+    }
+  }, [router])
 
   return (
-    <>
-      <Head>
-        <link rel="shortcut icon" href={getStrapiMedia(global.Favicon)} />
+    pageLoading ? (
+      <Loader></Loader>
+    ) : (
+      <>
+        <Head>
+          <link rel="shortcut icon" href={getStrapiMedia(global.Favicon)} />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap" rel="stylesheet" />
 
-      </Head>
-      <GlobalContext.Provider value={global}>
-        <Component {...pageProps} />
-      </GlobalContext.Provider>
-    </>
+        </Head>
+        <GlobalContext.Provider value={global}>
+          <Component {...pageProps} />
+        </GlobalContext.Provider>
+      </>
+    )
+
   );
 };
 

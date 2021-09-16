@@ -18,7 +18,7 @@ import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css"
 import '../styles/Home.module.css';
 
-const Home = ({ blogs, properties, homepage }) => {
+const Home = ({ blogs, dataRT, homepage }) => {
 
   const [scroll, setScroll] = useState(0)
 
@@ -101,11 +101,11 @@ const Home = ({ blogs, properties, homepage }) => {
       <Menu />
 
       {/* Add home screen imagewith screen height */}
-      <div id="loadingScreen1" className="relative bg-white">
+      <div id="loadingScreen1" className="relative bg-indigo-400 w-full h-screen">
 
         {/* { isSmallDisplay && <h1>Messages: {count}</h1>} */}
         {/* <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" className="w-full h-screen object-cover"></img> */}
-        <img src="/assets/images/main.jpg" className="w-full h-screen object-cover"></img>
+        {/* <img src="/assets/images/main.jpg" className="w-full h-screen object-cover"></img> */}
         {
           // isSmallDisplay
           //  ?
@@ -127,9 +127,9 @@ const Home = ({ blogs, properties, homepage }) => {
 
         <div id="main-typography-position" className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:container">
           <div id="main-typography" className="p-2">
-            <h1 id="main-heading" className='text-shadow-xl font-bold text-white text-4xl md:text-4xl sm:text-5xl md:mb-3 2xl:text-7xl '>Welcome to Tour de South -</h1>
-            <h1 className="text-shadow-sm font-semibold text-white text-1xl  md:mb-3 2xl:text-4xl">lorem ipsume dolar emit </h1>
-            <button className="bg-yellow-600 text-center font-normal text-white px-4 py-1 2xl:px-6 2xl:py-3 rounded-full shadow-2xl mt-2 font-thin text-sm flex 2xl:text-2xl">Call to Book
+            <h1 id="main-heading" className='text-shadow-xl text-white text-4xl md:text-4xl sm:text-5xl md:mb-3 2xl:text-7xl '>Welcome to Tour de South</h1>
+            <h1 className="text-shadow-sm text-white text-1xl  md:mb-3 2xl:text-4xl">lorem ipsume dolar emit </h1>
+            <button className="bg-yellow-600 text-center text-white px-4 py-1 2xl:px-6 2xl:py-3 rounded-full shadow-2xl mt-2 font-thin text-sm flex 2xl:text-2xl">Call to Book
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 2xl:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
               </svg>
@@ -180,7 +180,7 @@ const Home = ({ blogs, properties, homepage }) => {
                   <div className="">
                     <button className="  outline-none 2xl:h-14 w-full bg-yellow-600 text-center text-white px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex  justify-around items-center">
                       <Image src="/assets/icons/mountain.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
-                      <div className="font-semibold text-white align-middle items-center 2xl:text-xl">Hill</div>
+                      <div className=" text-white align-middle items-center 2xl:text-xl">Hill</div>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -188,7 +188,7 @@ const Home = ({ blogs, properties, homepage }) => {
                   <div className="">
                     <button className=" outline-none 2xl:h-14 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
                       <Image src="/assets/icons/ocean-waves.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 50 : 25} />
-                      <div className="font-semibold text-black align-middle items-center 2xl:text-xl">Beach</div>
+                      <div className=" text-black align-middle items-center 2xl:text-xl">Beach</div>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -196,16 +196,7 @@ const Home = ({ blogs, properties, homepage }) => {
                   <div className="">
                     <button className=" outline-none 2xl:h-14 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
                       <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
-                      <div className="font-semibold text-black align-middle items-center 2xl:text-xl">Forest</div>
-                    </button>
-                  </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                  <div className="">
-                    <button className=" outline-none 2xl:h-14 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
-                      <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
-                      <div className="font-semibold text-black align-middle items-center 2xl:text-xl">Forest</div>
+                      <div className=" text-black align-middle items-center 2xl:text-xl">Forest</div>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -214,7 +205,16 @@ const Home = ({ blogs, properties, homepage }) => {
                   <div className="">
                     <button className=" outline-none 2xl:h-14 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
                       <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
-                      <div className="font-semibold text-black align-middle items-center 2xl:text-xl">Forest</div>
+                      <div className=" text-black align-middle items-center 2xl:text-xl">Forest</div>
+                    </button>
+                  </div>
+                </SwiperSlide>
+
+                <SwiperSlide>
+                  <div className="">
+                    <button className=" outline-none 2xl:h-14 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
+                      <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
+                      <div className=" text-black align-middle items-center 2xl:text-xl">Forest</div>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -224,7 +224,7 @@ const Home = ({ blogs, properties, homepage }) => {
                   <div className="">
                     <button className=" outline-none 2xl:h-14 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
                       <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
-                      <div className="font-semibold text-black align-middle items-center 2xl:text-xl">Forest</div>
+                      <div className=" text-black align-middle items-center 2xl:text-xl">Forest</div>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -234,7 +234,7 @@ const Home = ({ blogs, properties, homepage }) => {
                   <div className="">
                     <button className="2xl:h-16 w-full bg-white text-center text-black px-4 py-2 rounded-full shadow-2xl mt-2 font-thin text-sm flex justify-around items-center">
                       <Image src="/assets/icons/forest-tree.svg" alt="Hill" width={40} height={isExtraBigDisplay ? 40 : 25} />
-                      <div className="font-semibold text-black align-middle items-center 2xl:text-xl">Forest</div>
+                      <div className=" text-black align-middle items-center 2xl:text-xl">Forest</div>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -246,7 +246,7 @@ const Home = ({ blogs, properties, homepage }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white text-center" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <h4 className="text-lg  text-shadow-md text-gray-600 2xl:text-4xl ">Destinations</h4>
               </svg> */}
             </div>
 
@@ -279,7 +279,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     {/* card heading and navigation */}
                     {/* <div id="cardHeading" className="flex justify-between p-3">
                       <div id="cardHeading">
-                        <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Hill Stays</h4>
+                        <h4 className="text-lg  text-shadow text-gray-600 ">Hill Stays</h4>
                       </div>
                       <div id="cardControlls">
                         <div className="flex align-middle justify-around items-center">
@@ -306,13 +306,13 @@ const Home = ({ blogs, properties, homepage }) => {
 
                         <div id="cardHeading" className="flex justify-between">
                           <div id="cardHeading">
-                            <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Hill Stays</h4>
+                            <h4 className="text-lg  text-shadow text-gray-600 ">Hill Stays</h4>
                           </div>
                         </div>
 
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">Form stay in forest</h5>
-                        <h4 className="text-sm font-bold text-shadow text-gray-800 pb-1">Property Name goes here</h4>
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">Form stay in forest</h5>
+                        <h4 className="text-sm  text-shadow text-gray-800 pb-1">Property Name goes here</h4>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
 
 
                       </div>
@@ -329,7 +329,8 @@ const Home = ({ blogs, properties, homepage }) => {
 
                     <div id="cardControls" className="pl-3 pr-3 pb-3 flex justify-between">
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
-                        <span className="font-bold">₹ 4,678 / Night</span>&nbsp; Call to Book
+                        <span className="">₹ 4,678 / Night</span>&nbsp; Call to Book
+
                       </button>
 
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
@@ -348,7 +349,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     {/* card heading and navigation */}
                     {/* <div id="cardHeading" className="flex justify-between p-3">
                       <div id="cardHeading">
-                        <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Hill Stays</h4>
+                        <h4 className="text-lg  text-shadow text-gray-600 ">Hill Stays</h4>
                       </div>
                       <div id="cardControlls">
                         <div className="flex align-middle justify-around items-center">
@@ -375,13 +376,13 @@ const Home = ({ blogs, properties, homepage }) => {
 
                         <div id="cardHeading" className="flex justify-between">
                           <div id="cardHeading">
-                            <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Hill Stays</h4>
+                            <h4 className="text-lg  text-shadow text-gray-600 ">Hill Stays</h4>
                           </div>
                         </div>
 
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">Form stay in forest</h5>
-                        <h4 className="text-sm font-bold text-shadow text-gray-800 pb-1">Property Name goes here</h4>
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">Form stay in forest</h5>
+                        <h4 className="text-sm  text-shadow text-gray-800 pb-1">Property Name goes here</h4>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
 
 
                       </div>
@@ -398,7 +399,7 @@ const Home = ({ blogs, properties, homepage }) => {
 
                     <div id="cardControls" className="pl-3 pr-3 pb-3 flex justify-between">
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
-                        <span className="font-bold">₹ 4,678 / Night</span>&nbsp; Call to Book
+                        <span className="">₹ 4,678 / Night</span>&nbsp; Call to Book
                       </button>
 
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
@@ -416,7 +417,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     {/* card heading and navigation */}
                     {/* <div id="cardHeading" className="flex justify-between p-3">
                       <div id="cardHeading">
-                        <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Moneymoon Stays</h4>
+                        <h4 className="text-lg  text-shadow text-gray-600 ">Moneymoon Stays</h4>
                       </div>
                       <div id="cardControlls">
                         <div className="flex align-middle justify-around items-center">
@@ -443,13 +444,13 @@ const Home = ({ blogs, properties, homepage }) => {
 
                         <div id="cardHeading" className="flex justify-between">
                           <div id="cardHeading">
-                            <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Hill Stays</h4>
+                            <h4 className="text-lg  text-shadow text-gray-600 ">Hill Stays</h4>
                           </div>
                         </div>
 
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">Carlm stay</h5>
-                        <h4 className="text-sm font-bold text-shadow text-gray-800 pb-1">Property Name goes here</h4>
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">Carlm stay</h5>
+                        <h4 className="text-sm  text-shadow text-gray-800 pb-1">Property Name goes here</h4>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
 
 
                       </div>
@@ -466,7 +467,7 @@ const Home = ({ blogs, properties, homepage }) => {
 
                     <div id="cardControls" className="pl-3 pr-3 pb-3 flex justify-between">
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
-                        <span className="font-bold">₹ 1,869 / Night</span>&nbsp; Call to Book
+                        <span className="">₹ 1,869 / Night</span>&nbsp; Call to Book
                       </button>
 
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
@@ -486,7 +487,7 @@ const Home = ({ blogs, properties, homepage }) => {
                     {/* card heading and navigation */}
                     {/* <div id="cardHeading" className="flex justify-between p-3">
                       <div id="cardHeading">
-                        <h4 className="text-lg font-semibold text-shadow text-gray-600 ">Moneymoon Stays</h4>
+                        <h4 className="text-lg  text-shadow text-gray-600 ">Moneymoon Stays</h4>
                       </div>
                       <div id="cardControlls">
                         <div className="flex align-middle justify-around items-center">
@@ -511,9 +512,9 @@ const Home = ({ blogs, properties, homepage }) => {
                     <div id="cardDescription" className="pl-3 pr-3 pb-1 flex justify-between">
                       <div id="leftSideDecription">
 
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">Carlm stay</h5>
-                        <h4 className="text-sm font-bold text-shadow text-gray-800 pb-1">Property Name goes here</h4>
-                        <h5 className="text-sm font-semibold text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">Carlm stay</h5>
+                        <h4 className="text-sm  text-shadow text-gray-800 pb-1">Property Name goes here</h4>
+                        <h5 className="text-sm  text-shadow text-gray-600 pb-1">5 Guests, 2 Bedroom , 4 Beds , 2 Bathroom </h5>
 
 
                       </div>
@@ -530,7 +531,7 @@ const Home = ({ blogs, properties, homepage }) => {
 
                     <div id="cardControls" className="pl-3 pr-3 pb-3 flex justify-between">
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
-                        <span className="font-bold">₹ 1,869 / Night</span>&nbsp; Call to Book
+                        <span className="">₹ 1,869 / Night</span>&nbsp; Call to Book
                       </button>
 
                       <button className="bg-white-600 text-center border border-gray-300  text-black px-4 py-1 rounded-full shadow-2xl mt-2 font-normal text-sm flex">
@@ -556,7 +557,7 @@ const Home = ({ blogs, properties, homepage }) => {
           {/* <div className="md:flex md:container md:mx-auto md:w-full">
             <div id="blogHeading" className="flex justify-between p-3 md:w-full">
               <div id="blogHeading">
-                <h4 className="text-lg font-semibold text-shadow text-white  2xl:text-4xl 2xl:text-shadow-xl">From our Blog</h4>
+                <h4 className="text-lg  text-shadow text-white  2xl:text-4xl 2xl:text-shadow-xl">From our Blog</h4>
               </div>
               <div id="blogControlls">
                 <div className="flex align-middle justify-around items-center">
@@ -590,7 +591,7 @@ const Home = ({ blogs, properties, homepage }) => {
 
 
 
-        <ResponsibleTourism blogs={blogs} />
+        <ResponsibleTourism dataRT={dataRT} />
 
 
         {/* responsible card end */}
@@ -617,14 +618,14 @@ const Home = ({ blogs, properties, homepage }) => {
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [blogs, properties, homepage] = await Promise.all([
+  const [blogs, dataRT, homepage] = await Promise.all([
     fetchAPI("/blog-posts"),
-    fetchAPI("/properties"),
+    fetchAPI("/responsible-tourisms"),
     fetchAPI("/home-page"),
   ]);
 
   return {
-    props: { blogs, properties, homepage },
+    props: { blogs, dataRT, homepage },
     revalidate: 1,
   };
 }
